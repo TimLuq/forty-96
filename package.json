@@ -1,0 +1,23 @@
+{
+  "name": "forty-96",
+  "version": "1.0.0",
+  "description": "A little game where the player tries to reach 4096.",
+  "main": "index",
+  "module": "build/ts/index.js",
+  "types": "build/ts/index.d.ts",
+  "repository": "https://github.com/TimLuq/forty-96",
+  "author": "Tim Lundqvist",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^10.5.2",
+    "es-observable-tests": "^0.3.0",
+    "rollup-plugin-uglify": "^4.0.0",
+    "uglify-es": "^3.3.9"
+  },
+  "scripts": {
+    "build": "npm run tsc && rollup -c",
+    "test": "npm run build && node build/cjs/test.js",
+    "tsc": "tsc -p tsconfig.json"
+  }
+}
