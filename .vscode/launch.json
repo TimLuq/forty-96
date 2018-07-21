@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Run tests",
+            "program": "${workspaceFolder}/build/debug/test/index.js",
+            "sourceMaps": true,
+            "preLaunchTask": "npm: build:debug",
+            "outFiles": [
+                "${workspaceFolder}/build/debug/**/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start game",
+            "program": "${workspaceFolder}/build/debug/bin.js",
+            "sourceMaps": true,
+            "preLaunchTask": "npm: build:debug",
+            "outFiles": [
+                "${workspaceFolder}/build/debug/**/*.js"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start game (Debug Console)",
+            "program": "${workspaceFolder}/build/debug/bin.js",
+            "sourceMaps": true,
+            "preLaunchTask": "npm: build:debug",
+            "outFiles": [
+                "${workspaceFolder}/build/debug/**/*.js"
+            ]
+        }
+    ]
+}

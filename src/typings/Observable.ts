@@ -1,4 +1,9 @@
 
+// tslint:disable-next-line:interface-name
+interface SymbolConstructor {
+    readonly observable: symbol;
+}
+
 declare class Observable<T = any, E = Error> implements Observable.IObservable<T, E> {
 
     /** Converts items to an Observable. */

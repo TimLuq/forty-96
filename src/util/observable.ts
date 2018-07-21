@@ -59,7 +59,7 @@ class ObservablePolyfill<T = any, E = any> implements Observable<T, E> {
                     // console.error("Expected result from Symbol.observable function to be an object of constructor " + C.name + " not ", res.constructor, res);
                     //  tslint:disable-next-line:max-line-length
                     // throw new TypeError("Expected result from Symbol.observable function to be an object of constructor " + C.name + " not " + res.constructor.name);
-                    return new C<T, E>(res);
+                    return new C<T, E>(res.subscribe);
                 }
 
                 return new C<T, E>(() => res);
@@ -127,7 +127,7 @@ class ObservablePolyfill<T = any, E = any> implements Observable<T, E> {
             try {
                 const cleanup: undefined | null | Observable.Subscription | (() => any)
                     = subscriber.call(undefined, subobs);
-                if (cleanup) {
+                if (cleanup !== null && cleanup !== undefined) {
                     if (typeof cleanup === "function") {
                         this._cleanup = cleanup;
                     } else if (typeof cleanup === "object" && typeof cleanup.unsubscribe === "function") {
@@ -210,7 +210,10 @@ class ObservablePolyfill<T = any, E = any> implements Observable<T, E> {
         public error(errorValue: E) {
             const obs = this.subscription.close();
             if (!obs) {
-                throw new Error("Observer is closed and can not receive any errors.");
+                //  throw new Error("Observer is closed and can not receive any errors.");
+                // TODO: spec says undefined, tests says `throw errorValue`.
+                // return undefined;
+                throw errorValue;
             }
             let err: any = noThrow;
             let ret: any;

@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "A little game where the player tries to reach 4096.",
   "main": "index",
-  "module": "build/ts/index.js",
-  "types": "build/ts/index.d.ts",
+  "module": "build/ts/lib.js",
+  "types": "build/ts/lib.d.ts",
+  "bin": "",
   "repository": "https://github.com/TimLuq/forty-96",
   "author": "Tim Lundqvist",
   "license": "MIT",
@@ -12,12 +13,19 @@
   "devDependencies": {
     "@types/node": "^10.5.2",
     "es-observable-tests": "^0.3.0",
+    "rollup-plugin-hashbang": "^1.0.1",
+    "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-uglify": "^4.0.0",
     "uglify-es": "^3.3.9"
   },
   "scripts": {
-    "build": "npm run tsc && rollup -c",
-    "test": "npm run build && node build/cjs/test.js",
+    "build": "tslint -p tsconfig.json && npm run build:dist && npm run build:debug",
+    "build:dist": "npm run tsc && rollup -c",
+    "build:debug": "tsc -p tsconfig.json --outDir build/debug --module commonjs",
+    "test": "npm run build:dist && node build/cjs/test.js",
     "tsc": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "tslib": "^1.9.3"
   }
 }

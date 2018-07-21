@@ -1,11 +1,11 @@
 if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['./build/amd/index.js'], function (index) {
+    define(['./build/amd/lib.js'], function (index) {
         return index;
     });
 } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
-    exports = require('./build/cjs/index.js');
+    exports = require('./build/cjs/lib.js');
 } else {
-    return eval("import('./build/esm/index.js')");
+    return eval("import('./build/esm/lib.js')");
 }

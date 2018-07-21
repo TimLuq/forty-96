@@ -1,1 +1,1 @@
-// export * from "./build/ts/index";
+export * from "./build/ts/lib";
